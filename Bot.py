@@ -5,7 +5,7 @@ import json
 from encodings.aliases import aliases
 
 i= 0
-bot = telebot.TeleBot('7409771005:AAFLG21JkNmhssJy--f32szVI47fAdZqCJE')
+bot = telebot.TeleBot('7272108290:AAGB6OnZfmwiaWZwQgy8asVh2J3oohXkZyg')
 
 keyboard = telebot.types.ReplyKeyboardMarkup(True, True, True)
 keyboard1 = telebot.types.ReplyKeyboardMarkup(True)
