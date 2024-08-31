@@ -7,9 +7,9 @@ from encodings.aliases import aliases
 i= 0
 bot = telebot.TeleBot('7272108290:AAGB6OnZfmwiaWZwQgy8asVh2J3oohXkZyg')
 
-keyboard = telebot.types.ReplyKeyboardMarkup(True, True, True)
+keyboard = telebot.types.ReplyKeyboardMarkup(True, True, True, True)
 keyboard1 = telebot.types.ReplyKeyboardMarkup(True)
-keyboard.row('Организация мероприятия', 'Взять отгул от занятий', 'Все мероприятия', '' )
+keyboard.row('Организация мероприятия', 'Взять отгул от занятий', 'Все мероприятия', 'Составы клубов' )
 keyboard1.row('Назад')
 
 @bot.message_handler(commands=['start'])
@@ -36,21 +36,23 @@ def text(message):
           srt = open('db_mp.json', mode='r', encoding='utf-8')
           bot.send_message(cid, srt)
 
-               
+     elif message.text == 'Составы клубов':
+          cid = message.chat.id
+          mem = open('clubM.json', mode='r', encoding='utf-8')
+          bot.send_message(cid, mem)
+
 
      elif message.text == 'Назад':
          bot.send_message(message.from_user.id, 'Что бы вы хотели сделать?', reply_markup = keyboard)
+     
      else:
          bot.send_message(message.from_user.id, 'Я вас не понимаю')
 
 def after_daysoff(message):
      a = message.text
      cid = message.chat.id
-     bot.send_message(cid, 'Данные записаны!'.format(a))
-     data = {}
-     data['daysoff'] = []
-     data['daysoff'] .append ({
-          'student':  a })
+     bot.send_message(cid, 'Данные записаны!')
+     data = []
      with open('daysoff.json','a', encoding='utf-8') as out:
           json.dump(data, out, ensure_ascii=False)
      
