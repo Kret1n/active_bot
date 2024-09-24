@@ -3,10 +3,10 @@ import random
 import time
 import json
 from encodings.aliases import aliases
-import key
+# import key
 
 i= 0
-bot = telebot.TeleBot(key.bot_key)
+bot = telebot.TeleBot('7272108290:AAGB6OnZfmwiaWZwQgy8asVh2J3oohXkZyg')
 
 keyboard = telebot.types.ReplyKeyboardMarkup(True, True, True, True)
 keyboard1 = telebot.types.ReplyKeyboardMarkup(True)
@@ -41,10 +41,13 @@ def text(message):
 
 #обработка файла и вывод из него данных
      elif message.text == 'Все мероприятия':
-          global data1
-          srt = open('db_mp.json', mode='r', encoding='utf-8')
-          cid = message.chat.id
-          bot.send_message(cid, srt)
+            global data1
+            srt = open('db_mp.json', mode='r', encoding='utf-8')
+            zov = json.load(srt)
+            
+            cid = message.chat.id
+            msg = zov['events'][0]['student']
+            bot.send_message(cid, msg)
      elif message.text == 'Составы клубов':
           cid = message.chat.id
           mem = open('clubM.json', mode='r', encoding='utf-8')
